@@ -1,0 +1,81 @@
+{
+  "manifest": {
+    "target": "wandb",
+    "project": "clean-generalization-gate",
+    "metrics": {
+      "raw_vgs": 0.61,
+      "dcr": 0.03,
+      "clean_vgs": 0.68,
+      "public": 0.84,
+      "hidden": 0.78,
+      "ood": 0.71,
+      "gap": 0.06,
+      "hack_risk": 0.02,
+      "calibration": 0.91,
+      "cost": 0.0,
+      "latency": 0.0,
+      "gate_decision": "ACCEPT",
+      "reject_reason_counts": {}
+    },
+    "artifacts": {
+      "assurance_card": {
+        "_comment": "ILLUSTRATIVE synthetic example \u2014 fake IDs, redacted fields.",
+        "card_version": "v2",
+        "run_id": "run_redacted_xxxx",
+        "org": "REDACTED",
+        "agent": "REDACTED",
+        "scores": {
+          "public": 0.77,
+          "hidden": 0.7,
+          "ood": 0.66,
+          "adversarial": 0.58
+        },
+        "contamination": {
+          "dcr": 0.05
+        },
+        "clean_vgs": {
+          "baseline": 0.55,
+          "candidate": 0.59
+        },
+        "generalization_gap": 0.07,
+        "gate": {
+          "outcome": "LIMITED_ROLLOUT",
+          "reasons": [
+            "ood_regressed"
+          ]
+        },
+        "redaction_status": "redacted",
+        "formal_claim": "Selected mathematical properties behind the contamination-resistant promotion gate are machine-verified in Lean 4. The implementation is property-tested against the formal specification.",
+        "formal_scope": "Selected mathematical properties behind the contamination-resistant promotion gate are machine-verified in Lean 4. The implementation is property-tested against the formal specification."
+      },
+      "aggregate_metrics": {
+        "raw_vgs": 0.61,
+        "dcr": 0.03,
+        "clean_vgs": 0.68,
+        "public": 0.84,
+        "hidden": 0.78,
+        "ood": 0.71,
+        "gap": 0.06,
+        "hack_risk": 0.02,
+        "calibration": 0.91,
+        "cost": 0.0,
+        "latency": 0.0,
+        "gate_decision": "ACCEPT",
+        "reject_reason_counts": {}
+      }
+    },
+    "redaction": {
+      "status": "redacted",
+      "secrets_scrubbed": true,
+      "hidden_evals_included": false,
+      "raw_traces_included": false
+    }
+  },
+  "dry_run_plan": {
+    "uploaded": false,
+    "dry_run": true,
+    "target": "wandb",
+    "project": "clean-generalization-gate",
+    "reason": "dry-run (default)"
+  }
+}
