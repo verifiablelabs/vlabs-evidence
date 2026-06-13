@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "target": "hf",
+    "dataset": "vlabs-clean-gate-evidence",
+    "classification": "public_demo",
+    "records": [
+      {
+        "_comment": "ILLUSTRATIVE synthetic example \u2014 fake IDs, redacted fields.",
+        "card_version": "v2",
+        "run_id": "run_redacted_xxxx",
+        "org": "REDACTED",
+        "agent": "REDACTED",
+        "scores": {
+          "public": 0.77,
+          "hidden": 0.7,
+          "ood": 0.66,
+          "adversarial": 0.58
+        },
+        "contamination": {
+          "dcr": 0.05
+        },
+        "clean_vgs": {
+          "baseline": 0.55,
+          "candidate": 0.59
+        },
+        "generalization_gap": 0.07,
+        "gate": {
+          "outcome": "LIMITED_ROLLOUT",
+          "reasons": [
+            "ood_regressed"
+          ]
+        },
+        "redaction_status": "redacted_public_safe",
+        "formal_claim": "Selected mathematical properties behind the contamination-resistant promotion gate are machine-verified in Lean 4. The implementation is property-tested against the formal specification."
+      },
+      {
+        "kind": "aggregate_metrics",
+        "raw_vgs": 0.61,
+        "dcr": 0.03,
+        "clean_vgs": 0.68,
+        "public": 0.84,
+        "hidden": 0.78,
+        "ood": 0.71,
+        "gap": 0.06,
+        "hack_risk": 0.02,
+        "calibration": 0.91,
+        "cost": 0.0,
+        "latency": 0.0,
+        "gate_decision": "ACCEPT",
+        "reject_reason_counts": {}
+      }
+    ],
+    "num_records": 2,
+    "card": {
+      "pretty_name": "vlabs-clean-gate-evidence",
+      "license": "apache-2.0",
+      "task_categories": [
+        "text-generation",
+        "feature-extraction"
+      ],
+      "intended_use": "Public evaluation evidence for the contamination-resistant promotion gate: aggregate scores, generalization-gap deltas, and redacted assurance cards for reproducing the published comparisons. Not a training set.",
+      "limitations": "Contains only public-demo records. Hidden evaluations, gold answers, raw agent traces, anti-hack traps, and customer data are excluded by policy. Scores are aggregate; per-instance private content is never published.",
+      "contamination_policy": "Public instances are generated after the evaluation freeze; hidden splits are never released. See the contamination firewall documentation.",
+      "formal_scope": "Selected mathematical properties behind the contamination-resistant promotion gate are machine-verified in Lean 4. The implementation is property-tested against the formal specification.",
+      "classification": "public_demo",
+      "redaction_status": "redacted"
+    },
+    "export_decision": {
+      "allowed": false,
+      "dry_run": true,
+      "reasons": [
+        "approval flag VLABS_APPROVE_HF_UPLOAD not set \u2014 dry-run only"
+      ]
+    },
+    "redaction": {
+      "status": "redacted",
+      "secrets_scrubbed": true,
+      "hidden_evals_included": false,
+      "raw_traces_included": false
+    }
+  },
+  "dry_run_plan": {
+    "uploaded": false,
+    "dry_run": true,
+    "target": "hf",
+    "dataset": "vlabs-clean-gate-evidence",
+    "reason": "dry-run (default)"
+  }
+}
