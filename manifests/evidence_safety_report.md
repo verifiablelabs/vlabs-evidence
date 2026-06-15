@@ -23,7 +23,9 @@ Generated locally. **No upload performed.** Approval flags VLABS_APPROVE_HF_UPLO
 ## Upload candidate set
 ### Hugging Face (dataset)
 - LICENSE
+- README.md
 - aggregate_metrics_sample.md
+- evidence_safety_report.md
 - hf_upload_manifest.json
 - reproducibility-notes.md
 - sample_assurance_card_redacted.json
