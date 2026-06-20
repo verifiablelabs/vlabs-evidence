@@ -14,6 +14,31 @@ only after the corresponding export approvals
 
 ---
 
+## Real, reproducible result — IPT on the Obfuscation Atlas MBPP-Honeypot (public data)
+
+Recognizable, $0, 0 model calls. Runs on [`taufeeque/mbpp-hardcode`](https://huggingface.co/datasets/taufeeque/mbpp-hardcode)
+— the public MBPP-Honeypot behind Obfuscation Atlas (FAR.AI, arXiv:2602.15515).
+Protocol: `extensional = pass(test_list[0])` (the gamed single-test reward),
+`T' = held-out tests` (reference-validated, the honeypot never exposed them),
+`IPT flag = extensional AND NOT pass(T')`. 500 test tasks; LLM judges on a fixed
+120-task subset.
+
+| auditor | recall blatant | recall obfuscated | FP on genuine | model calls | cost |
+|---|---|---|---|---|---|
+| **IPT (judge-free)** | **0.994** | **0.998** | **0.000** | **0** | **$0** |
+| GPT-4o-mini code-judge | 1.000 | 1.000 | **0.400** | 720 | per-call |
+| GPT-4o-mini I/O-judge | 0.917 | 0.925 | 0.917 | 720 | per-call |
+
+**Honest reading (not "beats judges on recall").** The code-judge matched IPT's
+recall; the win is operational: IPT has **0 false positives at $0 / 0 model calls**
+and is obfuscation-invariant, where the judge flags **40% of genuine solutions** as
+hacks — unusable as an in-the-loop RL verifier. IPT-the-method is Helff et al.
+(ICLR 2026, logic); this is the coding-verifier extension. Machine-readable:
+[`results/atlas_honeypot_ipt.json`](results/atlas_honeypot_ipt.json). Reproduce:
+`vlabs-ipt atlas` or `python scripts/eval_atlas_honeypot.py --judge-tasks 120`.
+
+---
+
 ## Real, reproducible result — conformal false-positive control for IPT (public data)
 
 The first **non-synthetic** finding published here. It runs entirely on **public
