@@ -41,9 +41,9 @@ hacks — unusable as an in-the-loop RL verifier. IPT-the-method is Helff et al.
 
 ## Real, reproducible result — conformal false-positive control for IPT (public data)
 
-The first **non-synthetic** finding published here. It runs entirely on **public
-datasets** (no customer data, nothing to redact) and reproduces from a **public
-script**, so the full numbers are stated openly.
+Another **non-synthetic** finding, alongside the Atlas honeypot result above. It
+runs entirely on **public datasets** (no customer data, nothing to redact) and
+reproduces from a **public script**, so the full numbers are stated openly.
 
 **Claim.** Adding a split-conformal gate to Isomorphic Perturbation Testing gives
 a *stated, distribution-free* false-positive bound on shortcut flags **and**
