@@ -18,6 +18,7 @@ private anti-hack traps, or private engine internals.
 
 - [`evidence/sample_assurance_card_redacted.json`](evidence/sample_assurance_card_redacted.json)
 - [`evidence/aggregate_metrics_sample.md`](evidence/aggregate_metrics_sample.md)
+- [`results/atlas_honeypot_ipt.json`](results/atlas_honeypot_ipt.json) — **real** result: IPT vs LLM-judges on the Obfuscation Atlas MBPP-Honeypot
 - [`results/conformal_fp_control_mbpp.json`](results/conformal_fp_control_mbpp.json) — **real** public-benchmark result (not synthetic)
 - [`reproducibility-notes.md`](reproducibility-notes.md)
 - [`manifests/`](manifests/) — sanitized HF/W&B export manifests (below)
