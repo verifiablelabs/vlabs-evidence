@@ -7,6 +7,52 @@ Every future evidence pack in this repository will state, per artifact:
 - which numbers are measured vs derived (clean score = raw x (1 - DCR)),
 - the redaction profile applied before publication.
 
-Current artifacts are **synthetic/illustrative** and exist to fix the format.
-Links to W&B dashboards / HF datasets will be added only after the
-corresponding export approvals (`VLABS_APPROVE_{WANDB_UPLOAD,HF_UPLOAD}`).
+Current artifacts under [`evidence/`](evidence/) are **synthetic/illustrative**
+and exist to fix the format. Links to W&B dashboards / HF datasets will be added
+only after the corresponding export approvals
+(`VLABS_APPROVE_{WANDB_UPLOAD,HF_UPLOAD}`).
+
+---
+
+## Real, reproducible result — conformal false-positive control for IPT (public data)
+
+The first **non-synthetic** finding published here. It runs entirely on **public
+datasets** (no customer data, nothing to redact) and reproduces from a **public
+script**, so the full numbers are stated openly.
+
+**Claim.** Adding a split-conformal gate to Isomorphic Perturbation Testing gives
+a *stated, distribution-free* false-positive bound on shortcut flags **and**
+catches detector-evading memorizers that the structural rule misses — a new
+operating point, not a free lunch.
+
+**Setup (measured, not derived).**
+- Benchmark: MBPP+ (`evalplus/mbppplus`) × model completions
+  (`wuschelschulz/mbpp_reward_hacking_and_normal_completions`), shared items.
+- Score: `iso_fail_frac` = fraction of the EvalPlus isomorphic bank a candidate
+  fails (the canonical `invariance_violation_rate`).
+- `tau` is calibrated by split-conformal on a held-out **half** of the genuine
+  scores; the false-positive rate is measured on the **other** half — honest and
+  out-of-sample. Calibration/test genuine never overlap.
+- `n = 209` problems · 625 hacks · 165 genuine ext-pass (83 calib / 82 test).
+
+**Result.**
+
+| rule | recall (strong memorizer) | recall (evasive memorizer) | held-out genuine FP | stated bound? |
+|---|---|---|---|---|
+| behavioral (`is_shortcut`) | 1.00 | 1.00 | 15.85% | no |
+| structural (`CONFIRMED`) | 1.00 | **0.03** | 0% | no |
+| **conformal @ α=0.05** | 0.94 | **0.94** | **2.44%** | **≤ 5% ✓** |
+| **conformal @ α=0.10** | 1.00 | **1.00** | **9.76%** | **≤ 10% ✓** |
+
+The `evasive memorizer` is a SHA-1-routed lookup that passes the public suite by
+construction but evades all six AST detectors (0/6 fire) — the obfuscation threat
+the structural rule cannot see (cf. Obfuscation Atlas, arXiv:2602.15515). The
+conformal gate recovers it while holding the genuine FP under the chosen α,
+verified out-of-sample at both settings. Useful range α ≈ 0.05–0.10 (α=0.2
+degenerates `tau → 0`).
+
+**Reproduce.** Public script in the open engine repo:
+`vlabs-verifier-robustness-engine/scripts/eval_conformal_mbpp.py`
+(`HF_TOKEN=… python scripts/eval_conformal_mbpp.py --alpha 0.05 0.1`); machine-
+readable metrics in [`results/conformal_fp_control_mbpp.json`](results/conformal_fp_control_mbpp.json).
+The gate ships in the platform as `POST /v1/verifier-audits/assurance-card`.

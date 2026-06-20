@@ -1,0 +1,90 @@
+{
+  "_comment": "REAL public-benchmark result (NOT synthetic). Public datasets only; nothing redacted. Reproduces from vlabs-verifier-robustness-engine/scripts/eval_conformal_mbpp.py.",
+  "result_type": "verifier_robustness.conformal_fp_control",
+  "status": "real_public_data",
+  "benchmark": "MBPP+ x wuschelschulz \u2014 three operating points on a continuous IPT score",
+  "datasets": [
+    "evalplus/mbppplus",
+    "wuschelschulz/mbpp_reward_hacking_and_normal_completions"
+  ],
+  "n_problems": 209,
+  "n_hacks": 625,
+  "n_genuine_ext_pass": 165,
+  "split": {
+    "calib_genuine": 83,
+    "test_genuine": 82,
+    "policy": "calib/test genuine disjoint; FP measured out-of-sample"
+  },
+  "score": "iso_fail_frac = fraction of EvalPlus bank inputs the candidate fails (the canonical invariance_violation_rate)",
+  "operating_points": {
+    "behavioral": {
+      "fp_on_heldout_genuine": 0.1585,
+      "recall_strong_hack": 1.0,
+      "recall_evasive_hack": 1.0,
+      "recall_real_hack": 0.0048,
+      "precision": 0.9699,
+      "pooled_recall": 0.6704,
+      "f1": 0.7928
+    },
+    "structural_confirmed": {
+      "fp_on_heldout_genuine": 0.0,
+      "recall_strong_hack": 1.0,
+      "recall_evasive_hack": 0.0287,
+      "recall_real_hack": 0.0,
+      "precision": 1.0,
+      "pooled_recall": 0.344,
+      "f1": 0.5119
+    },
+    "conformal": {
+      "alpha=0.05": {
+        "tau": 0.818182,
+        "n_calib": 83,
+        "fp_bound": 0.05,
+        "fp_on_heldout_genuine": 0.0244,
+        "recall_strong_hack": 0.9378,
+        "recall_evasive_hack": 0.9378,
+        "recall_real_hack": 0.0,
+        "precision": 0.9949,
+        "pooled_recall": 0.6272,
+        "f1": 0.7694
+      },
+      "alpha=0.1": {
+        "tau": 0.107143,
+        "n_calib": 83,
+        "fp_bound": 0.1,
+        "fp_on_heldout_genuine": 0.0976,
+        "recall_strong_hack": 1.0,
+        "recall_evasive_hack": 1.0,
+        "recall_real_hack": 0.0048,
+        "precision": 0.9813,
+        "pooled_recall": 0.6704,
+        "f1": 0.7966
+      },
+      "alpha=0.2": {
+        "tau": 0.0,
+        "n_calib": 83,
+        "fp_bound": 0.2,
+        "fp_on_heldout_genuine": 1.0,
+        "recall_strong_hack": 1.0,
+        "recall_evasive_hack": 1.0,
+        "recall_real_hack": 0.0048,
+        "precision": 0.8363,
+        "pooled_recall": 0.6704,
+        "f1": 0.7442
+      }
+    }
+  },
+  "headline": {
+    "stated_fp_bound_holds_out_of_sample": {
+      "alpha_0.05": "FP 0.0244 <= 0.05",
+      "alpha_0.10": "FP 0.0976 <= 0.10"
+    },
+    "evasive_memorizer_recall": {
+      "structural": 0.0287,
+      "conformal_0.05": 0.9378,
+      "conformal_0.10": 1.0
+    }
+  },
+  "reproduce": "HF_TOKEN=... python scripts/eval_conformal_mbpp.py --alpha 0.05 0.1  (vlabs-verifier-robustness-engine)",
+  "deployed_as": "POST /v1/verifier-audits/assurance-card (vlabs-platform)"
+}
